@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout android:id="@+id/NewTeamLayout"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="10px">
+
+    <TextView
+        android:textSize="10pt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/add_team_title"
+        android:id="@+id/titleView"
+        android:layout_marginBottom="10dp" />
+
+    <TextView
+        android:layout_below="@+id/titleView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="@string/add_team_prompt"
+        android:id="@+id/textView"
+        android:layout_alignBottom="@+id/editTeamName"
+        android:layout_marginTop="10dp" />
+
+    <EditText
+        android:layout_below="@+id/titleView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editTeamName"
+        android:layout_alignEnd="@+id/button_cancel"
+        android:layout_toEndOf="@+id/button_ok"
+        android:singleLine="true"
+        android:focusableInTouchMode="true"
+        android:inputType="textCapCharacters" />
+
+    <Button
+        android:layout_below="@id/editTeamName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="@string/button_cancel"
+        android:id="@+id/button_cancel"
+        android:layout_gravity="right" />
+
+    <Button
+        android:layout_below="@id/editTeamName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/button_ok"
+        android:id="@+id/button_ok" />
+
+</RelativeLayout>
