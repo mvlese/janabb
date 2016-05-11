@@ -12,7 +12,7 @@ public class BBStatContract {
     /* Inner class that defines the table contents */
     public static abstract class TeamEntry implements BaseColumns {
         public static final String TABLE_NAME = "teams";
-        public static final String COLUMN_NAME_LOCATION_ID = "teamid";
+        public static final String COLUMN_NAME_TEAM_ID = "teamid";
         public static final String COLUMN_NAME_TEAM_NAME = "name";
     }
 

@@ -1,6 +1,8 @@
 package net.leseonline.bbstat.db;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -40,14 +42,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String CREATE_TABLE_TEAMS = "CREATE TABLE " +
             BBStatContract.TeamEntry.TABLE_NAME + "(" +
-            BBStatContract.TeamEntry.COLUMN_NAME_LOCATION_ID + " INTEGER PRIMARY KEY," +
+            BBStatContract.TeamEntry.COLUMN_NAME_TEAM_ID + " INTEGER PRIMARY KEY," +
             BBStatContract.TeamEntry.COLUMN_NAME_TEAM_NAME + " TEXT)";
 
     private static final String CREATE_TABLE_PLAYERS = "CREATE TABLE " +
             BBStatContract.PlayerEntry.TABLE_NAME + "(" +
             BBStatContract.PlayerEntry.COLUMN_NAME_PLAYER_ID + " INTEGER PRIMARY KEY," +
             BBStatContract.PlayerEntry.COLUMN_NAME_PLAYER_FIRST_NAME + " TEXT," +
-            BBStatContract.PlayerEntry.COLUMN_NAME_PLAYER_FIRST_NAME + " TEXT)";
+            BBStatContract.PlayerEntry.COLUMN_NAME_PLAYER_LAST_NAME + " TEXT)";
 
     private static final String CREATE_TABLE_TEAMS_PLAYERS = "CREATE TABLE " +
             BBStatContract.TeamPlayerEntry.TABLE_NAME + "(" +
@@ -83,5 +85,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             BBStatContract.BasketballStatEntry.COLUMN_NAME_ASSISTS + " INTEGER," +
             BBStatContract.BasketballStatEntry.COLUMN_NAME_FOULS + " INTEGER," +
             BBStatContract.BasketballStatEntry.COLUMN_NAME_REBOUNDS + " INTEGER)";
+
+    public long addTeam(String name) {
+        long rowid = -1;
+
+        try {
+            ContentValues values = new ContentValues();
+            values.put(BBStatContract.TeamEntry.COLUMN_NAME_TEAM_NAME, name);
+
+            SQLiteDatabase db = this.getWritableDatabase();
+
+            rowid = db.insert(BBStatContract.TeamEntry.TABLE_NAME, null, values);
+
+            db.close();
+        }catch (Exception ex) {
+            ex.printStackTrace();
+            rowid = -1;
+        }
+
+        return rowid;
+    }
 
 }

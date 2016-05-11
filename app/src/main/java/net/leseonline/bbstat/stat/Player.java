@@ -10,7 +10,7 @@ public class Player {
 
     public Player() {
         id = 0;
-        teamIds = new ArrayList<Integer>();
+        teamIds = new ArrayList<Long>();
     }
 
     @Override
@@ -23,30 +23,25 @@ public class Player {
         return id == player.id;
     }
 
-    @Override
-    public int hashCode() {
-        return id;
-    }
-
-    public void addTeamId(int teamId) {
+    public void addTeamId(long teamId) {
         if (!teamIds.contains(teamId)) {
             teamIds.add(teamId);
         }
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
-    public List<Integer> getTeamIds() {
+    public List<Long> getTeamIds() {
         return teamIds;
     }
 
-    public void setTeamIds(List<Integer> teamIds) {
+    public void setTeamIds(List<Long> teamIds) {
         this.teamIds = teamIds;
     }
 
@@ -66,8 +61,8 @@ public class Player {
         this.lastName = lastName;
     }
 
-    private int id;
+    private long id;
     private String firstName;
     private String lastName;
-    private List<Integer> teamIds;
+    private List<Long> teamIds;
 }

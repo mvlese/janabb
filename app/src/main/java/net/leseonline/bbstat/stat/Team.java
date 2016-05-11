@@ -9,8 +9,9 @@ import java.util.List;
 public class Team {
 
 
-    public Team() {
-        setName("");
+    public Team(long id, String name) {
+        this.id = id;
+        this.name = name;
         players = new ArrayList<Player>();
     }
 
@@ -28,14 +29,11 @@ public class Team {
         this.players = players;
     }
 
-    private List<Player> players;
-    private String name;
-
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    private long id;
+    private List<Player> players;
+    private String name;
 }

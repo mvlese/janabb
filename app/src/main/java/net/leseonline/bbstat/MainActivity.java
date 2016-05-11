@@ -17,6 +17,8 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import net.leseonline.bbstat.contact.Contact;
+import net.leseonline.bbstat.db.DatabaseHelper;
+import net.leseonline.bbstat.stat.Team;
 
 import java.util.List;
 
@@ -27,10 +29,12 @@ public class MainActivity extends AppCompatActivity implements AddTeamDialogFrag
     private static final int REQUEST_CONTACTS = 1;
     private final int ADD_TEAM = 1;
     private final int CREATE_GAME = 2;
+    private DatabaseHelper mDbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mDbHelper = new DatabaseHelper(this);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -49,6 +53,9 @@ public class MainActivity extends AppCompatActivity implements AddTeamDialogFrag
     public void onAddTeamDialogPositiveAction(AddTeamDialogFragment dialog) {
         String name = dialog.getName();
         Toast.makeText(getApplicationContext(), name, Toast.LENGTH_SHORT).show();
+        long id = mDbHelper.addTeam(name);
+        Team team = new Team(id, name);
+
         // Add team to db.
         // Add players to team.
     }
