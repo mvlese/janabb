@@ -27,7 +27,7 @@ public class BasketballStatistics {
         return twoPoints;
     }
 
-    public Statistic getTwoPointAtempts() {
+    public Statistic getTwoPointAttempts() {
         return twoPointAttempts;
     }
 
