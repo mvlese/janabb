@@ -5,8 +5,9 @@ package net.leseonline.bbstat.stat;
  */
 public class BasketballStatistics {
 
-    public BasketballStatistics(int id) {
+    public BasketballStatistics(int id, int playerId) {
         this.id = id;
+        this.playerId = playerId;
         twoPoints = new Statistic();
         twoPointAttempts = new Statistic();
         threePoints = new Statistic();
@@ -19,6 +20,8 @@ public class BasketballStatistics {
     }
 
     public int getId() { return id; }
+
+    public int getPlayerId() { return playerId; }
 
     public Statistic getTwoPoints() {
         return twoPoints;
@@ -57,6 +60,7 @@ public class BasketballStatistics {
     }
 
     private int id;
+    private int playerId;
     private Statistic twoPoints;
     private Statistic twoPointAttempts;
     private Statistic threePoints;
