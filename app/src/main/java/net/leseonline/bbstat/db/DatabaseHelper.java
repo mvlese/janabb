@@ -3,6 +3,7 @@ package net.leseonline.bbstat.db;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteCursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -42,24 +43,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String CREATE_TABLE_TEAMS = "CREATE TABLE " +
             BBStatContract.TeamEntry.TABLE_NAME + "(" +
-            BBStatContract.TeamEntry.COLUMN_NAME_TEAM_ID + " INTEGER PRIMARY KEY," +
+            "_id INTEGER PRIMARY KEY," +
             BBStatContract.TeamEntry.COLUMN_NAME_TEAM_NAME + " TEXT)";
 
     private static final String CREATE_TABLE_PLAYERS = "CREATE TABLE " +
             BBStatContract.PlayerEntry.TABLE_NAME + "(" +
-            BBStatContract.PlayerEntry.COLUMN_NAME_PLAYER_ID + " INTEGER PRIMARY KEY," +
+            "_id INTEGER PRIMARY KEY," +
             BBStatContract.PlayerEntry.COLUMN_NAME_PLAYER_FIRST_NAME + " TEXT," +
             BBStatContract.PlayerEntry.COLUMN_NAME_PLAYER_LAST_NAME + " TEXT)";
 
     private static final String CREATE_TABLE_TEAMS_PLAYERS = "CREATE TABLE " +
             BBStatContract.TeamPlayerEntry.TABLE_NAME + "(" +
-            BBStatContract.TeamPlayerEntry.COLUMN_NAME_TEAM_PLAYER_ID + " INTEGER PRIMARY KEY," +
+            "_id INTEGER PRIMARY KEY," +
             BBStatContract.TeamPlayerEntry.COLUMN_NAME_TEAM_ID + " INTEGER," +
             BBStatContract.TeamPlayerEntry.COLUMN_NAME_PLAYER_ID + " INTEGER)";
 
     private static final String CREATE_TABLE_GAMES = "CREATE TABLE " +
             BBStatContract.GameEntry.TABLE_NAME + "(" +
-            BBStatContract.GameEntry.COLUMN_NAME_GAME_ID + " INTEGER PRIMARY KEY," +
+            "_id INTEGER PRIMARY KEY," +
             BBStatContract.GameEntry.COLUMN_NAME_TEAM1_ID + " INTEGER," +
             BBStatContract.GameEntry.COLUMN_NAME_TEAM2_ID + " INTEGER," +
             BBStatContract.GameEntry.COLUMN_NAME_TEAM1_SCORE + " INTEGER," +
@@ -68,13 +69,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String CREATE_TABLE_GAME_STATS = "CREATE TABLE " +
             BBStatContract.GameStatEntry.TABLE_NAME + "(" +
-            BBStatContract.GameStatEntry.COLUMN_NAME_GAME_STAT_ID + " INTEGER PRIMARY KEY," +
+            "_id INTEGER PRIMARY KEY," +
             BBStatContract.GameStatEntry.COLUMN_NAME_GAME_ID + " INTEGER," +
             BBStatContract.GameStatEntry.COLUMN_NAME_STAT_ID + " INTEGER)";
 
     private static final String CREATE_TABLE_STATS = "CREATE TABLE " +
             BBStatContract.BasketballStatEntry.TABLE_NAME + "(" +
-            BBStatContract.BasketballStatEntry.COLUMN_NAME_STAT_ID + " INTEGER PRIMARY KEY," +
+            "_id INTEGER PRIMARY KEY," +
             BBStatContract.BasketballStatEntry.COLUMN_NAME_PLAYER_ID + " INTEGER," +
             BBStatContract.BasketballStatEntry.COLUMN_NAME_TWO_POINTS + " INTEGER," +
             BBStatContract.BasketballStatEntry.COLUMN_NAME_TWO_POINT_ATTEMPTS + " INTEGER," +
@@ -106,4 +107,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return rowid;
     }
 
+    public Cursor getTeams() {
+        String query = "select * from " + BBStatContract.TeamEntry.TABLE_NAME + " order by " + BBStatContract.TeamEntry.COLUMN_NAME_TEAM_NAME;
+        SQLiteDatabase db = this.getWritableDatabase();
+        return db.rawQuery(query, null);
+    }
 }

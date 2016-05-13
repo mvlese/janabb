@@ -12,27 +12,23 @@ public class BBStatContract {
     /* Inner class that defines the table contents */
     public static abstract class TeamEntry implements BaseColumns {
         public static final String TABLE_NAME = "teams";
-        public static final String COLUMN_NAME_TEAM_ID = "teamid";
         public static final String COLUMN_NAME_TEAM_NAME = "name";
     }
 
     public static abstract class PlayerEntry implements BaseColumns {
         public static final String TABLE_NAME = "players";
-        public static final String COLUMN_NAME_PLAYER_ID = "playerid";
         public static final String COLUMN_NAME_PLAYER_FIRST_NAME = "first_name";
         public static final String COLUMN_NAME_PLAYER_LAST_NAME = "last_name";
     }
 
     public static abstract class TeamPlayerEntry implements BaseColumns {
         public static final String TABLE_NAME = "teamsplayers";
-        public static final String COLUMN_NAME_TEAM_PLAYER_ID = "teamplayerid";
         public static final String COLUMN_NAME_TEAM_ID = "teamid";
         public static final String COLUMN_NAME_PLAYER_ID = "playerid";
     }
 
     public static abstract class GameEntry implements BaseColumns {
         public static final String TABLE_NAME = "games";
-        public static final String COLUMN_NAME_GAME_ID = "gameid";
         public static final String COLUMN_NAME_TEAM1_ID = "team1id";
         public static final String COLUMN_NAME_TEAM2_ID = "team2id";
         public static final String COLUMN_NAME_TEAM1_SCORE = "team1_score";
@@ -42,7 +38,6 @@ public class BBStatContract {
 
     public static abstract class BasketballStatEntry implements BaseColumns {
         public static final String TABLE_NAME = "stats";
-        public static final String COLUMN_NAME_STAT_ID = "statid";
         public static final String COLUMN_NAME_PLAYER_ID = "playerid";
         public static final String COLUMN_NAME_TWO_POINTS = "twopoints";
         public static final String COLUMN_NAME_TWO_POINT_ATTEMPTS = "twopointattempts";
@@ -57,7 +52,6 @@ public class BBStatContract {
 
     public static abstract class GameStatEntry implements BaseColumns {
         public static final String TABLE_NAME = "gamestats";
-        public static final String COLUMN_NAME_GAME_STAT_ID = "gamestatid";
         public static final String COLUMN_NAME_GAME_ID = "gameid";
         public static final String COLUMN_NAME_STAT_ID = "statid";
     }

@@ -3,17 +3,23 @@ package net.leseonline.bbstat;
 import android.Manifest;
 import android.app.Dialog;
 import android.app.FragmentManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.ViewGroup;
+import android.widget.CursorAdapter;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import net.leseonline.bbstat.contact.Contact;
@@ -22,7 +28,9 @@ import net.leseonline.bbstat.stat.Team;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements AddTeamDialogFragment.IAddTeamDialogListener  {
+public class MainActivity extends AppCompatActivity implements
+        AddTeamDialogFragment.IAddTeamDialogListener,
+        ChooseTeamDialogFragment.IChooseTeamDialogListener {
 
     private final String TAG = "Main Activity";
     private static String[] PERMISSIONS_CONTACT = {Manifest.permission.READ_CONTACTS};
@@ -64,6 +72,14 @@ public class MainActivity extends AppCompatActivity implements AddTeamDialogFrag
         // do nothing
     }
 
+    public void onChooseTeamDialogPositiveAction(ChooseTeamDialogFragment dialog) {
+
+    }
+
+    public void onChooseTeamDialogNegativeAction(ChooseTeamDialogFragment dialog) {
+
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -86,6 +102,9 @@ public class MainActivity extends AppCompatActivity implements AddTeamDialogFrag
             dialogFragment.show(fm, "Sample Fragment");
             return true;
         } else if (id == R.id.action_create_game) {
+            FragmentManager fm = getFragmentManager();
+            ChooseTeamDialogFragment dialogFragment = new ChooseTeamDialogFragment();
+            dialogFragment.show(fm, "Sample Fragment");
             return true;
         }
 

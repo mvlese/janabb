@@ -20,7 +20,6 @@ import android.widget.TextView;
  */
 public class AddTeamDialogFragment extends DialogFragment {
     private View mRootView;
-    private boolean mIsValid = false;
     private IAddTeamDialogListener mListener = null;
 
     /**
