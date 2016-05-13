@@ -68,13 +68,6 @@ public class ChooseTeamDialogFragment extends DialogFragment {
         TeamCursorAdapter adapter = new TeamCursorAdapter(getActivity(), c);
         teams.setAdapter(adapter);
 
-//        teams.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//
-//            }
-//        });
-
         Button button = (Button)mRootView.findViewById(R.id.button_cancel);
         button.setOnClickListener(new View.OnClickListener() {
 
