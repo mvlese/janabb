@@ -108,8 +108,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
     public Cursor getTeams() {
-        String query = "select * from " + BBStatContract.TeamEntry.TABLE_NAME + " order by " + BBStatContract.TeamEntry.COLUMN_NAME_TEAM_NAME;
+        String query = "select * from " + BBStatContract.TeamEntry.TABLE_NAME + " order by name";
         SQLiteDatabase db = this.getWritableDatabase();
         return db.rawQuery(query, null);
+    }
+
+    public boolean teamExists(String teamName) {
+        String query = "select upper(name) from " + BBStatContract.TeamEntry.TABLE_NAME + " where name = '" + teamName.toUpperCase() + "'";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = db.rawQuery(query, null);
+        boolean result = (c.getCount() == 1);
+        c.close();
+        return result;
     }
 }

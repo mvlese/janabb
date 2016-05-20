@@ -1,10 +1,12 @@
 package net.leseonline.bbstat;
 
 import android.Manifest;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -58,28 +60,6 @@ public class MainActivity extends AppCompatActivity implements
 
     }
 
-    public void onAddTeamDialogPositiveAction(AddTeamDialogFragment dialog) {
-        String name = dialog.getName();
-        Toast.makeText(getApplicationContext(), name, Toast.LENGTH_SHORT).show();
-        long id = mDbHelper.addTeam(name);
-        Team team = new Team(id, name);
-
-        // Add team to db.
-        // Add players to team.
-    }
-
-    public void onAddTeamDialogNegativeAction(AddTeamDialogFragment dialog) {
-        // do nothing
-    }
-
-    public void onChooseTeamDialogPositiveAction(ChooseTeamDialogFragment dialog) {
-
-    }
-
-    public void onChooseTeamDialogNegativeAction(ChooseTeamDialogFragment dialog) {
-
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -95,6 +75,8 @@ public class MainActivity extends AppCompatActivity implements
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
+            Intent intent = new Intent(this, SettingsActivity.class);
+            startActivity(intent);
             return true;
         } else if (id == R.id.action_add_team) {
             FragmentManager fm = getFragmentManager();
@@ -159,6 +141,27 @@ public class MainActivity extends AppCompatActivity implements
             default:
                 break;
         }
+    }
+
+    public void onAddTeamDialogPositiveAction(AddTeamDialogFragment dialog) {
+        String name = dialog.getName();
+        Toast.makeText(getApplicationContext(), name, Toast.LENGTH_SHORT).show();
+        long id = mDbHelper.addTeam(name);
+        Team team = new Team(id, name);
+        // Add team to db.
+        // Add players to team.
+    }
+
+    public void onAddTeamDialogNegativeAction(AddTeamDialogFragment dialog) {
+        // do nothing
+    }
+
+    public void onChooseTeamDialogPositiveAction(ChooseTeamDialogFragment dialog) {
+
+    }
+
+    public void onChooseTeamDialogNegativeAction(ChooseTeamDialogFragment dialog) {
+
     }
 
 }

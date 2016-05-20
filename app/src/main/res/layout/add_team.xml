@@ -33,10 +33,21 @@
         android:layout_toEndOf="@+id/button_ok"
         android:singleLine="true"
         android:focusableInTouchMode="true"
-        android:inputType="textCapCharacters" />
+        android:inputType="textCapWords|textCapSentences|textCapCharacters" />
+
+    <TextView
+        android:layout_below="@+id/editTeamName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text=""
+        android:id="@+id/addTeamMessageView"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp" />
 
     <Button
-        android:layout_below="@id/editTeamName"
+        android:layout_below="@id/addTeamMessageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
@@ -45,10 +56,11 @@
         android:layout_gravity="right" />
 
     <Button
-        android:layout_below="@id/editTeamName"
+        android:layout_below="@id/addTeamMessageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/button_ok"
-        android:id="@+id/button_ok" />
+        android:id="@+id/button_ok"
+        android:enabled="false" />
 
 </RelativeLayout>

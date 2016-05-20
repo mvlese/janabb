@@ -15,6 +15,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import net.leseonline.bbstat.db.DatabaseHelper;
+
 /**
  * Created by mlese on 5/6/2016.
  */
@@ -27,6 +29,7 @@ public class AddTeamDialogFragment extends DialogFragment {
      */
     public interface IAddTeamDialogListener {
         public void onAddTeamDialogPositiveAction(AddTeamDialogFragment dialog);
+
         public void onAddTeamDialogNegativeAction(AddTeamDialogFragment dialog);
     }
 
@@ -43,7 +46,8 @@ public class AddTeamDialogFragment extends DialogFragment {
             // The activity doesn't implement the interface, throw exception
             throw new ClassCastException(activity.toString()
                     + " must implement IAddTeamDialogListener");
-        }    }
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -69,18 +73,32 @@ public class AddTeamDialogFragment extends DialogFragment {
 
               @Override
               public void onTextChanged(CharSequence s, int start, int before, int count) {
-                  Button button = (Button) mRootView.findViewById(R.id.button_ok);
-                  button.setEnabled(s.length() > 0);
               }
 
               @Override
               public void afterTextChanged(Editable s) {
+                  String name = s.toString().trim().toUpperCase();
+                  Button button = (Button) mRootView.findViewById(R.id.button_ok);
+                  TextView messageView = (TextView) mRootView.findViewById(R.id.addTeamMessageView);
+                  messageView.setText("");
+                  if (s.length() > 0) {
+                      DatabaseHelper dbHelper = new DatabaseHelper(getActivity());
+                      boolean exists = dbHelper.teamExists(name);
+                      if (exists) {
+                          button.setEnabled(false);
+                          messageView.setText(name + " already exists.");
+                      } else {
+                          button.setEnabled(true);
+                      }
+                  } else {
+                      button.setEnabled(false);
+                  }
               }
           }
 
         );
 
-        Button button = (Button)mRootView.findViewById(R.id.button_cancel);
+        Button button = (Button) mRootView.findViewById(R.id.button_cancel);
         button.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -90,7 +108,7 @@ public class AddTeamDialogFragment extends DialogFragment {
 
         });
 
-        button = (Button)mRootView.findViewById(R.id.button_ok);
+        button = (Button) mRootView.findViewById(R.id.button_ok);
         button.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -105,7 +123,7 @@ public class AddTeamDialogFragment extends DialogFragment {
 
     public String getName() {
         EditText et = (EditText) mRootView.findViewById(R.id.editTeamName);
-        String name = et.getText().toString();
+        String name = et.getText().toString().trim().toUpperCase();
         return name;
     }
 
